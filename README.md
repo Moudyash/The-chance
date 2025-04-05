@@ -7,7 +7,7 @@ This repository includes all the tasks completed week by week during the trainin
 
 ## 📆 Week 01: Basic Algorithm Challenges & TDD
 <>
-![The Chance Academy Logo]([https://link_to_image_of_the_chance_academy_logo.jpg](https://media.licdn.com/dms/image/v2/D4E0BAQFIZa0R6n2AeA/company-logo_200_200/company-logo_200_200/0/1737724125457/thechance101_logo?e=2147483647&v=beta&t=CndXwVc5XTV6Q4mehGjiIjW6w03rov6xzYpauq9AqLs))
+![The Chance Academy Logo](https://media.licdn.com/dms/image/v2/D4E0BAQFIZa0R6n2AeA/company-logo_200_200/company-logo_200_200/0/1737724125457/thechance101_logo?e=2147483647&v=beta&t=CndXwVc5XTV6Q4mehGjiIjW6w03rov6xzYpauq9AqLs)
 
 ### 🧩 Task 1: Sudoku Checker ✅
 - **Description**: A function that validates a Sudoku puzzle according to the rules—no duplicate numbers in the same row, column, or 3x3 subgrid.
