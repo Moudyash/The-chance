@@ -1,4 +1,4 @@
-package Week01
+package Tasks.Week01
 
 fun test(name: String, result: Boolean, correctResult: Boolean) {
     if (result == correctResult) {

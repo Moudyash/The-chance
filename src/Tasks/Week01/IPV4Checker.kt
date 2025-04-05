@@ -1,4 +1,4 @@
-package Week01
+package Tasks.Week01
 
 fun CheckIp(name: String, result: Boolean, correctResult: Boolean) {
     if (result == correctResult) {
