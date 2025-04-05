@@ -44,15 +44,13 @@ This repository includes all the tasks completed week by week during the trainin
 ## 📁 Project Structure
 
 ```bash
-📦 TheChance-Academy-Tasks/
+📦 TheChance/
 ├── week01/
-│   ├── sudoku_checker.js
-│   ├── sudoku_checker.test.js
-│   ├── ipv4_checker.js
-│   ├── ipv4_checker.test.js
+│   ├── IPV4Checker.kt
+│   ├── SudokuChecker.kt
 │   └── flowcharts/
-│       ├── sudoku_flowchart.drawio
-│       └── ipv4_flowchart.drawio
+│       ├── Ip.drawio.png
+│       └── Sudoku .drawio.png
 ├── week02/
 │   └── (coming soon...)
 ├── README.md
