@@ -45,6 +45,10 @@ This repository includes all the tasks completed week by week during the trainin
 
 ```bash
 📦 TheChance/
+├── practice/
+│   ├── BankSystem/
+│       ├── BankAccount.kt
+│       ├── BankSystem.kt 
 ├── week01/
 │   ├── IPV4Checker.kt
 │   ├── SudokuChecker.kt
