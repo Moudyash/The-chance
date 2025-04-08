@@ -1,58 +1,14 @@
-enum class DefaultCategory(val displayName: String) {
-    FOOD("Food"),
-    RENT("Rent"),
-    SALARY("Salary"),
-    ENTERTAINMENT("ENTERTAINMENT"),
-    TRANSPORT("TRANSPORT"),
+enum class DefaultCategory(val id: Int, val displayName: String) {
+    FOOD(1, "Food"),
+    RENT(2, "Rent"),
+    SALARY(3, "Salary"),
+    ENTERTAINMENT(4, "Entertainment"),
+    TRANSPORT(5, "Transport"),
+    Other(6, "Other");
 
-    SAVINGS("Other");
-    override fun toString(): String = displayName
+    override fun toString(): String = "$id. $displayName"
 }
 
-class CategoryManagerimp {
-    private val categories = mutableSetOf<String>()
-
-    init {
-        DefaultCategory.values().forEach { categories.add(it.displayName) }
-    }
-
-    fun categoryExists(name: String): Boolean {
-        if (name.isBlank()) return false
-        return categories.any { it.equals(name, ignoreCase = true) }
-    }
-
-
-    fun addCategory(name: String): Boolean {
-        if (categoryExists(name)) return false
-        categories.add(name)
-        return true
-    }
-
-    fun updateCategory(oldName: String, newName: String): Boolean {
-        if (oldName.isBlank() || newName.isBlank()) return false
-
-        val old = categories.find { it.equals(oldName, ignoreCase = true) }
-        if (old == null || categoryExists(newName)) return false
-
-        categories.remove(old)
-        categories.add(newName)
-        return true
-    }
-
-    fun deleteCategory(name: String): Boolean {
-        val toDelete = categories.find { it.equals(name, ignoreCase = true) }
-        return if (toDelete != null) {
-            categories.remove(toDelete)
-            true
-        } else {
-            false
-        }
-    }
-
-    fun listCategories(): List<String> {
-        return categories.sorted()
-    }
-}
 class CategoryManager {
     private val categories = mutableSetOf<String>()
 
@@ -60,26 +16,23 @@ class CategoryManager {
         DefaultCategory.values().forEach { categories.add(it.displayName) }
     }
 
-    fun categoryExists(name: String): Boolean {
-return false
-    }
-
-
-    fun addCategory(name: String): Boolean {
-
+    fun categoryExists(name: String): Any {
         return false
     }
 
-    fun updateCategory(oldName: String, newName: String): Boolean {
-
+    fun addCategory(name: String): Any {
         return false
     }
 
-    fun deleteCategory(name: String): Boolean {
-      return false
+    fun updateCategory(oldName: String, newName: String): Any {
+        return false
     }
 
-    fun listCategories(): List<String> {
+    fun deleteCategory(name: String): Any {
+        return false
+    }
+
+    fun listCategories(): Any {
         return categories.sorted()
     }
 }
