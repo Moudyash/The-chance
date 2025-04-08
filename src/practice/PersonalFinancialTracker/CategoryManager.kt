@@ -12,9 +12,7 @@ enum class DefaultCategory(val id: Int, val displayName: String) {
 class CategoryManager {
     private val categories = mutableSetOf<String>()
 
-    init {
-        DefaultCategory.values().forEach { categories.add(it.displayName) }
-    }
+
 
     fun categoryExists(name: String): Any {
         return false
