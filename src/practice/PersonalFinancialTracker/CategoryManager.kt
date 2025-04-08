@@ -9,7 +9,7 @@ enum class DefaultCategory(val displayName: String) {
     override fun toString(): String = displayName
 }
 
-class CategoryManager {
+class CategoryManagerimp {
     private val categories = mutableSetOf<String>()
 
     init {
@@ -47,6 +47,36 @@ class CategoryManager {
         } else {
             false
         }
+    }
+
+    fun listCategories(): List<String> {
+        return categories.sorted()
+    }
+}
+class CategoryManager {
+    private val categories = mutableSetOf<String>()
+
+    init {
+        DefaultCategory.values().forEach { categories.add(it.displayName) }
+    }
+
+    fun categoryExists(name: String): Boolean {
+return false
+    }
+
+
+    fun addCategory(name: String): Boolean {
+
+        return false
+    }
+
+    fun updateCategory(oldName: String, newName: String): Boolean {
+
+        return false
+    }
+
+    fun deleteCategory(name: String): Boolean {
+      return false
     }
 
     fun listCategories(): List<String> {
