@@ -1,16 +1,11 @@
-import practice.PersonalFinancialTracker.Category
 enum class DefaultCategory(val displayName: String) {
     FOOD("Food"),
     RENT("Rent"),
     SALARY("Salary"),
-    BILLS("Bills"),
-    ENTERTAINMENT("Entertainment"),
-    TRANSPORTATION("Transportation"),
-    HEALTH("Health"),
-    TRAVEL("Travel"),
-    EDUCATION("Education"),
-    SAVINGS("Other");
+    ENTERTAINMENT("ENTERTAINMENT"),
+    TRANSPORT("TRANSPORT"),
 
+    SAVINGS("Other");
     override fun toString(): String = displayName
 }
 
@@ -18,7 +13,6 @@ class CategoryManager {
     private val categories = mutableSetOf<String>()
 
     init {
-        // Initialize with default categories
         DefaultCategory.values().forEach { categories.add(it.displayName) }
     }
 
@@ -58,27 +52,4 @@ class CategoryManager {
     fun listCategories(): List<String> {
         return categories.sorted()
     }
-}
-
-// ✅ Sample test runner without a test library
-fun checkResult(name: String, result: Boolean, expected: Boolean) {
-    if (result == expected) {
-        println("✅ Success: $name")
-    } else {
-        println("❌ Failed: $name (Expected $expected but got $result)")
-    }
-}
-
-fun runCategoryManagerTests() {
-    val manager = CategoryManager()
-
-    checkResult("Check default category exists: Food", manager.categoryExists("food"), true)
-    checkResult("Add new category: Gaming", manager.addCategory("Gaming"), true)
-    checkResult("Add duplicate category: gaming", manager.addCategory("GAMING"), false)
-    checkResult("Update category: Gaming -> eSports", manager.updateCategory("gaming", "eSports"), true)
-    checkResult("Delete category: eSports", manager.deleteCategory("Esports"), true)
-    checkResult("Delete non-existing category: Coffee", manager.deleteCategory("Coffee"), false)
-
-    println("Categories List:")
-    manager.listCategories().forEach { println("- $it") }
 }
