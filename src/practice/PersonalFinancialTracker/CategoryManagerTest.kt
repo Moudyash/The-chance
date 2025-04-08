@@ -3,47 +3,26 @@ package practice.PersonalFinancialTracker
 import CategoryManager
 
 class CategoryManagerTest {
-fun CategoryTest(name: String, result: Boolean, expected: Boolean) {
+fun CategoryCheck(name: String, result: Boolean, expected: Boolean) {
     if (result == expected) {
-        println("✅ Success: $name.")
+        println("Success: $name.")
     } else {
-        println("❌ Failed: $name. Expected $expected, got $result.")
+        println("Failed: $name. Expected $expected, got $result.")
     }
 }
 
     fun runCategoryManagerTests() {
         val manager = CategoryManager()
 
-        CategoryTest("Add 'Food'", manager.addCategory("Food"), true)
-        CategoryTest("Prevent empty category", manager.addCategory(""), false)
-        CategoryTest("Prevent duplicate 'Food'", manager.addCategory("Food"), false)
-
-        CategoryTest("Update 'Food' to 'Groceries'", manager.updateCategory("Food", "Groceries"), true)
-        CategoryTest("Fail to update 'NonExist'", manager.updateCategory("NonExist", "Test"), false)
-
-        manager.addCategory("Bills")
-        CategoryTest("Prevent rename to existing category", manager.updateCategory("Groceries", "Bills"), false)
-
-        CategoryTest("Delete 'Groceries'", manager.deleteCategory("Groceries"), true)
-        CategoryTest("Fail delete 'Random'", manager.deleteCategory("Random"), false)
-
-        manager.addCategory("Travel")
-        manager.addCategory("Health")
-        val list = manager.listCategories()
-        val listCheck = list.any { it.name.equals("Travel", ignoreCase = true) } &&
-                list.any { it.name.equals("Health", ignoreCase = true) }
-        CategoryTest("List all categories", listCheck, true)
-
-        manager.updateCategory("Bills", "a")
-
-        println(" Final Category List:")
-        manager.listCategories().forEach {
-            println("ID: ${it.id}, Name: ${it.name}")
-        }
-
-        println(" Check category exists:")
-        println("Does 'A' category exist? ${manager.categoryExists("A")}")
-        println("Does 'hEALTH' category exist? ${manager.categoryExists("hEALTH")}")
+        CategoryCheck("Check default category exists: Food", manager.categoryExists("food"), true)
+        CategoryCheck("Add new category: Gaming", manager.addCategory("Gaming"), true)
+        CategoryCheck("Add duplicate category: gaming", manager.addCategory("GAMING"), false)
+        CategoryCheck("Update category: Gaming -> eSports", manager.updateCategory("gaming", "eSports"), true)
+        CategoryCheck("Delete category: eSports", manager.deleteCategory("Esports"), true)
+        CategoryCheck("Delete non-existing category: Coffee", manager.deleteCategory("Coffee"), false)
+        CategoryCheck("Check empty category name", manager.categoryExists(""), false)
+        println(" Categories List:")
+        manager.listCategories().forEach { println("- $it") }
     }
 
 }

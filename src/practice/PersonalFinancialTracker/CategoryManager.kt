@@ -1,39 +1,84 @@
 import practice.PersonalFinancialTracker.Category
+enum class DefaultCategory(val displayName: String) {
+    FOOD("Food"),
+    RENT("Rent"),
+    SALARY("Salary"),
+    BILLS("Bills"),
+    ENTERTAINMENT("Entertainment"),
+    TRANSPORTATION("Transportation"),
+    HEALTH("Health"),
+    TRAVEL("Travel"),
+    EDUCATION("Education"),
+    SAVINGS("Other");
+
+    override fun toString(): String = displayName
+}
 
 class CategoryManager {
-    private val categories = mutableListOf<Category>()
-    private var nextId = 1
+    private val categories = mutableSetOf<String>()
+
+    init {
+        // Initialize with default categories
+        DefaultCategory.values().forEach { categories.add(it.displayName) }
+    }
+
+    fun categoryExists(name: String): Boolean {
+        if (name.isBlank()) return false
+        return categories.any { it.equals(name, ignoreCase = true) }
+    }
+
 
     fun addCategory(name: String): Boolean {
-        val trimmedName = name.trim()
-        if (trimmedName.isEmpty()) return false
-        if (categories.any { it.name.equals(trimmedName, ignoreCase = true) }) return false
-
-        val newCategory = Category(id = nextId++, name = trimmedName)
-        categories.add(newCategory)
+        if (categoryExists(name)) return false
+        categories.add(name)
         return true
     }
 
     fun updateCategory(oldName: String, newName: String): Boolean {
-        val trimmedNewName = newName.trim()
-        if (trimmedNewName.isEmpty()) return false
+        if (oldName.isBlank() || newName.isBlank()) return false
 
-        val category = categories.find { it.name.equals(oldName, ignoreCase = true) }
-        if (category == null || categories.any { it.name.equals(trimmedNewName, ignoreCase = true) }) return false
+        val old = categories.find { it.equals(oldName, ignoreCase = true) }
+        if (old == null || categoryExists(newName)) return false
 
-        category.name = trimmedNewName
+        categories.remove(old)
+        categories.add(newName)
         return true
     }
 
     fun deleteCategory(name: String): Boolean {
-        return categories.removeIf { it.name.equals(name, ignoreCase = true) }
+        val toDelete = categories.find { it.equals(name, ignoreCase = true) }
+        return if (toDelete != null) {
+            categories.remove(toDelete)
+            true
+        } else {
+            false
+        }
     }
 
-    fun listCategories(): List<Category> {
-        return categories.toList()
+    fun listCategories(): List<String> {
+        return categories.sorted()
     }
+}
 
-    fun categoryExists(name: String): Boolean {
-        return categories.any { it.name.equals(name, ignoreCase = true) }
+// ✅ Sample test runner without a test library
+fun checkResult(name: String, result: Boolean, expected: Boolean) {
+    if (result == expected) {
+        println("✅ Success: $name")
+    } else {
+        println("❌ Failed: $name (Expected $expected but got $result)")
     }
+}
+
+fun runCategoryManagerTests() {
+    val manager = CategoryManager()
+
+    checkResult("Check default category exists: Food", manager.categoryExists("food"), true)
+    checkResult("Add new category: Gaming", manager.addCategory("Gaming"), true)
+    checkResult("Add duplicate category: gaming", manager.addCategory("GAMING"), false)
+    checkResult("Update category: Gaming -> eSports", manager.updateCategory("gaming", "eSports"), true)
+    checkResult("Delete category: eSports", manager.deleteCategory("Esports"), true)
+    checkResult("Delete non-existing category: Coffee", manager.deleteCategory("Coffee"), false)
+
+    println("Categories List:")
+    manager.listCategories().forEach { println("- $it") }
 }
