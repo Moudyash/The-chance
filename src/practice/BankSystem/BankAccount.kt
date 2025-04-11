@@ -30,8 +30,22 @@ class BankAccount(val fullname: String) {
         }
     }
 
+    fun getMyId() {
+        println("To View Your Account Id Please Enter Your PIN code  ")
+
+        if (checkPinForTransaction()) {
+            println(
+                "your Account Id Is: $accountId"
+            )
+            println("Please ensure that you do not share your Account ID with anyone, as it is confidential and will be used to secure your account.\n")
+        } else {
+            println("\u001B[31m❌ Sorry ${fullname} Invalid PIN. Transaction failed.\u001B[0m")
+        }
+
+    }
+
     fun setupBankAccount() {
-        println("\u001B[32mYou have created a BankAccount with full name $fullname successfully.\u001B[0m")
+        println("\u001B[32mYou have created a BankAccount with full name \u001B[31m $fullname \u001B[32msuccessfully.\u001B[0m")
         println("\u001B[34mPlease let’s setup your account for security.\u001B[0m")
 
         val pin = getPinFromUser()
@@ -150,11 +164,13 @@ class BankAccount(val fullname: String) {
                     val amount = scanner.nextInt()
                     deposit(amount)
                 }
+
                 3 -> {
                     println("\u001B[34mEnter the amount to withdraw:\u001B[0m")
                     val amount = scanner.nextInt()
                     withdraw(amount)
                 }
+
                 4 -> {
                     println("\u001B[34mEnter the amount to transfer:\u001B[0m")
                     val amount = scanner.nextInt()
@@ -162,12 +178,14 @@ class BankAccount(val fullname: String) {
                     val recipientAccount = BankAccount("Recipient Account")
                     transferBalance(amount, recipientAccount)
                 }
+
                 5 -> printTransactions()
                 6 -> printLastTransaction()
                 7 -> {
                     println("\u001B[32mExiting... Goodbye!\u001B[0m")
                     break
                 }
+
                 else -> println("\u001B[31m❌ Invalid choice, please select again.\u001B[0m")
             }
         }

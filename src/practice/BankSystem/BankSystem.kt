@@ -9,14 +9,16 @@ fun main() {
     println("Please enter your full name To create your account:")
 
     val mohammed = BankAccount("mohammed")
-    val sami = BankAccount("mohammed")
-
+    val sami = BankAccount("sami")
     mohammed.deposit(100)
+    mohammed.getMyId()
+
     mohammed.withdraw(100)
     mohammed.deposit(100)
     mohammed.deposit(200)
     mohammed.withdraw(100)
     mohammed.transferBalance(100,sami)
+
 }
 
 fun test(name: String, result: Boolean, correctResult: Boolean) {
