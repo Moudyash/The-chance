@@ -1,4 +1,4 @@
-import practice.PersonalFinancialTracker.Category
+import practice.Personal_Financial_Tracker.Category
 
 class CategorySystem {
 

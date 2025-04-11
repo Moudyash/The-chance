@@ -1,4 +1,4 @@
-package practice.PersonalFinancialTracker
+package practice.Personal_Financial_Tracker
 
 import CategorySystem
 
